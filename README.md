@@ -28,7 +28,7 @@ This is a Spring Boot service that provides FizzBuzz sequences and tracks statis
 The service will start on http://localhost:8080
 
 ### APIS
-1.Generate FizzBuzz Sequence:
+1. Generate FizzBuzz Sequence:
 
    Url:
    http://localhost:8080/fizzbuzz?multipleOf3=3&multipleOf5=5&limit=15&replacementForMultipleOf3=fizz&replacementForMultipleOf5=buzz
@@ -41,6 +41,7 @@ The service will start on http://localhost:8080
    replacementForMultipleOf5 (string): The replacement for multiples of int2.
 
    Output:
+   ```json
    [
        "1",
        "2",
@@ -48,12 +49,14 @@ The service will start on http://localhost:8080
        "4",
        "buzz"
    ]
-2.Get Statistics
+
+2. Get Statistics
 
    Url:
    http://localhost:8080/statistics
 
    Output:
+   ```json
    {
        "mostUsedRequest": "3_5_5_fizz_buzz",
        "mostUsedRequestCount": 5
