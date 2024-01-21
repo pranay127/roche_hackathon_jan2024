@@ -28,15 +28,18 @@ This is a Spring Boot service that provides FizzBuzz sequences and tracks statis
 The service will start on http://localhost:8080
 
 APIS:
-1.Generate FizzBuzz Sequence
+1.Generate FizzBuzz Sequence:
+
    Url:
    http://localhost:8080/fizzbuzz?multipleOf3=3&multipleOf5=5&limit=15&replacementForMultipleOf3=fizz&replacementForMultipleOf5=buzz
+
    Parameters:
    multipleOf3 (integer): Multiples of this number will be replaced with str1.
    multipleOf5 (integer): Multiples of this number will be replaced with str2.
    limit (integer): The limit for the FizzBuzz sequence.
    replacementForMultipleOf3 (string): The replacement for multiples of int1.
    replacementForMultipleOf5 (string): The replacement for multiples of int2.
+
    Output
    ```bash
    [
@@ -47,8 +50,8 @@ APIS:
        "buzz"
    ]
 2.Get Statistics
+
    Url:
-   ```bash 
    http://localhost:8080/statistics
    Output:
    ```bash 
