@@ -1,4 +1,4 @@
-# roche_hackathon_jan2024
+# Roche Hackathon 2024
 # FizzBuzz Service
 
 ## Overview
@@ -40,8 +40,7 @@ The service will start on http://localhost:8080
    replacementForMultipleOf3 (string): The replacement for multiples of int1.<br />
    replacementForMultipleOf5 (string): The replacement for multiples of int2.
 
-   Output
-   ```bash
+   Output:
    [
        "1",
        "2",
@@ -55,7 +54,6 @@ The service will start on http://localhost:8080
    http://localhost:8080/statistics
 
    Output:
-   ```bash 
    {
        "mostUsedRequest": "3_5_5_fizz_buzz",
        "mostUsedRequestCount": 5
