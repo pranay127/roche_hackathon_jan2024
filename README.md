@@ -34,6 +34,7 @@ The service will start on http://localhost:8080
    http://localhost:8080/fizzbuzz?multipleOf3=3&multipleOf5=5&limit=15&replacementForMultipleOf3=fizz&replacementForMultipleOf5=buzz
 
    Parameters:
+   
    multipleOf3 (integer): Multiples of this number will be replaced with str1.<br />
    multipleOf5 (integer): Multiples of this number will be replaced with str2.<br />
    limit (integer): The limit for the FizzBuzz sequence.<br />
@@ -50,7 +51,7 @@ The service will start on http://localhost:8080
        "buzz"
    ]
 
-2. Get Statistics
+3. Get Statistics
 
    Url:
    http://localhost:8080/statistics
