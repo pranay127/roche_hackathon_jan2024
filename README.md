@@ -20,7 +20,6 @@ This is a Spring Boot service that provides FizzBuzz sequences and tracks statis
 ```bash
 mvn clean install
 
-```bash
 java -jar target/fizzbuzz-service-1.0.0.jar
 
 OR
