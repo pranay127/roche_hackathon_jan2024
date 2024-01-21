@@ -31,15 +31,15 @@ The service will start on http://localhost:8080
 1. Generate FizzBuzz Sequence:
 
    Url:
-   http://localhost:8080/fizzbuzz?multipleOf3=3&multipleOf5=5&limit=15&replacementForMultipleOf3=fizz&replacementForMultipleOf5=buzz
-
+   http://localhost:8080/fizzbuzz?num1=3&num2=5&limit=5&replacementForMultipleOfNum1=fizz&replacementForMultipleOfNum2=buzz
+   
    Parameters:
    
-   multipleOf3 (integer): Multiples of this number will be replaced with str1.<br />
-   multipleOf5 (integer): Multiples of this number will be replaced with str2.<br />
+   num1 (integer): Multiples of this number will be replaced with replacementForMultipleOfNum1.<br />
+   num2 (integer): Multiples of this number will be replaced with replacementForMultipleOfNum2.<br />
    limit (integer): The limit for the FizzBuzz sequence.<br />
-   replacementForMultipleOf3 (string): The replacement for multiples of int1.<br />
-   replacementForMultipleOf5 (string): The replacement for multiples of int2.
+   replacementForMultipleOfNum1 (string): The replacement for multiples of num1.<br />
+   replacementForMultipleOfNum2 (string): The replacement for multiples of num2.
 
    Output:
    ```json
