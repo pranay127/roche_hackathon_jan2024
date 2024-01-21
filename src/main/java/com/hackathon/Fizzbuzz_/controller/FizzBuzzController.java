@@ -1,74 +1,45 @@
-package com.hackathon.Fizzbuzz_.service;
+package com.hackathon.Fizzbuzz_.controller;
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.hackathon.Fizzbuzz_.model.Statistics;
-import org.springframework.stereotype.Service;
+import com.hackathon.Fizzbuzz_.service.FizzBuzzService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-@Service
-public class FizzBuzzService {
+@RestController
+public class FizzBuzzController {
 
-    private Map<String, Integer> requestStatistics = new HashMap<>();
-    private String mostUsedRequest;
-    private int mostUsedRequestCount;
+    private static final Logger logger = LoggerFactory.getLogger(FizzBuzzController.class);
 
-    public List<String> generateFizzBuzz(int multipleOf3, int multipleOf5, int limit, String replacementForMultipleOf3, String replacementForMultipleOf5) {
-        try {
-            validateInputParameters(multipleOf3, multipleOf5, limit, replacementForMultipleOf3, replacementForMultipleOf5);
-        } catch (IllegalArgumentException e) {
-            return List.of("Error: " + e.getMessage());
-        }
+    @Autowired
+    private FizzBuzzService fizzBuzzService;
 
-        List<String> result = new ArrayList<>();
-
-        for (int i = 1; i <= limit; i++) {
-            StringBuilder sb = new StringBuilder();
-            if (i % multipleOf3 == 0) {
-                sb.append(replacementForMultipleOf3);
-            }
-            if (i % multipleOf5 == 0) {
-                sb.append(replacementForMultipleOf5);
-            }
-            if (sb.length() == 0) {
-                sb.append(i);
-            }
-
-            String requestKey = multipleOf3 + "_" + multipleOf5 + "_" + limit + "_" + replacementForMultipleOf3 + "_" + replacementForMultipleOf5;
-            requestStatistics.put(requestKey, requestStatistics.getOrDefault(requestKey, 0) + 1);
-
-            if (requestStatistics.get(requestKey) > mostUsedRequestCount) {
-                mostUsedRequest = requestKey;
-                mostUsedRequestCount = requestStatistics.get(requestKey);
-            }
-
-            result.add(sb.toString());
-        }
-
+    @GetMapping("/fizzbuzz")
+    public List<String> getFizzBuzz(
+    		@RequestParam(name = "multipleOf3") int int1,
+            @RequestParam(name = "multipleOf5") int int2,
+            @RequestParam(name = "limit") int limit,
+            @RequestParam(name = "replacementForMultipleOf3") String str1,
+            @RequestParam(name = "replacementForMultipleOf5") String str2) {
+        logger.info("Received FizzBuzz request with parameters: int1={}, int2={}, limit={}, str1={}, str2={}",
+                int1, int2, limit, str1, str2);
+        List<String> result = fizzBuzzService.generateFizzBuzz(int1, int2, limit, str1, str2);
+        logger.info("FizzBuzz request processed successfully.");
         return result;
     }
 
+    @GetMapping("/statistics")
     public Statistics getStatistics() {
-        return new Statistics(mostUsedRequest, mostUsedRequestCount);
-    }
-
-    private void validateInputParameters(int multipleOf3, int multipleOf5, int limit, String replacementForMultipleOf3, String replacementForMultipleOf5) {
-        if (multipleOf3 <= 0) {
-            throw new IllegalArgumentException("multipleOf3 must be greater than zero.");
-        }
-
-        if (multipleOf5 <= 0) {
-            throw new IllegalArgumentException("multipleOf5 must be greater than zero.");
-        }
-
-        if (limit <= 0) {
-            throw new IllegalArgumentException("limit must be greater than zero.");
-        }
-
-        if (replacementForMultipleOf3 == null || replacementForMultipleOf5 == null) {
-            throw new IllegalArgumentException("replacementForMultipleOf3 and replacementForMultipleOf5 cannot be null.");
-        }
+        logger.info("Received request for statistics.");
+        Statistics statistics = fizzBuzzService.getStatistics();
+        logger.info("Statistics request processed successfully.");
+        return statistics;
     }
 }
