@@ -23,11 +23,11 @@ public class FizzBuzzController {
 
     @GetMapping("/fizzbuzz")
     public List<String> getFizzBuzz(
-    		@RequestParam(name = "multipleOf3") int int1,
-            @RequestParam(name = "multipleOf5") int int2,
+    		@RequestParam(name = "num1") int int1,
+            @RequestParam(name = "num2") int int2,
             @RequestParam(name = "limit") int limit,
-            @RequestParam(name = "replacementForMultipleOf3") String str1,
-            @RequestParam(name = "replacementForMultipleOf5") String str2) {
+            @RequestParam(name = "replacementForMultipleOfNum1") String str1,
+            @RequestParam(name = "replacementForMultipleOfNum2") String str2) {
         logger.info("Received FizzBuzz request with parameters: int1={}, int2={}, limit={}, str1={}, str2={}",
                 int1, int2, limit, str1, str2);
         List<String> result = fizzBuzzService.generateFizzBuzz(int1, int2, limit, str1, str2);

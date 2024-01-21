@@ -15,9 +15,9 @@ public class FizzBuzzService {
     private String mostUsedRequest;
     private int mostUsedRequestCount;
 
-    public List<String> generateFizzBuzz(int multipleOf3, int multipleOf5, int limit, String replacementForMultipleOf3, String replacementForMultipleOf5) {
+    public List<String> generateFizzBuzz(int num1, int num2, int limit, String replacementForMultipleOfNum1, String replacementForMultipleOfNum2) {
         try {
-            validateInputParameters(multipleOf3, multipleOf5, limit, replacementForMultipleOf3, replacementForMultipleOf5);
+            validateInputParameters(num1, num2, limit, replacementForMultipleOfNum1, replacementForMultipleOfNum2);
         } catch (IllegalArgumentException e) {
             return List.of("Error: " + e.getMessage());
         }
@@ -26,17 +26,17 @@ public class FizzBuzzService {
 
         for (int i = 1; i <= limit; i++) {
             StringBuilder sb = new StringBuilder();
-            if (i % multipleOf3 == 0) {
-                sb.append(replacementForMultipleOf3);
+            if (i % num1 == 0) {
+                sb.append(replacementForMultipleOfNum1);
             }
-            if (i % multipleOf5 == 0) {
-                sb.append(replacementForMultipleOf5);
+            if (i % num2 == 0) {
+                sb.append(replacementForMultipleOfNum2);
             }
             if (sb.length() == 0) {
                 sb.append(i);
             }
 
-            String requestKey = multipleOf3 + "_" + multipleOf5 + "_" + limit + "_" + replacementForMultipleOf3 + "_" + replacementForMultipleOf5;
+            String requestKey = num1 + "_" + num2 + "_" + limit + "_" + replacementForMultipleOfNum1 + "_" + replacementForMultipleOfNum2;
             requestStatistics.put(requestKey, requestStatistics.getOrDefault(requestKey, 0) + 1);
 
             if (requestStatistics.get(requestKey) > mostUsedRequestCount) {
@@ -54,21 +54,21 @@ public class FizzBuzzService {
         return new Statistics(mostUsedRequest, mostUsedRequestCount);
     }
 
-    private void validateInputParameters(int multipleOf3, int multipleOf5, int limit, String replacementForMultipleOf3, String replacementForMultipleOf5) {
-        if (multipleOf3 <= 0) {
-            throw new IllegalArgumentException("multipleOf3 must be greater than zero.");
+    private void validateInputParameters(int num1, int num2, int limit, String replacementForMultipleOfNum1, String replacementForMultipleOfNum2) {
+        if (num1 <= 0) {
+            throw new IllegalArgumentException("num1 must be greater than zero.");
         }
 
-        if (multipleOf5 <= 0) {
-            throw new IllegalArgumentException("multipleOf5 must be greater than zero.");
+        if (num2 <= 0) {
+            throw new IllegalArgumentException("num2 must be greater than zero.");
         }
 
         if (limit <= 0) {
             throw new IllegalArgumentException("limit must be greater than zero.");
         }
 
-        if (replacementForMultipleOf3 == null || replacementForMultipleOf5 == null) {
-            throw new IllegalArgumentException("replacementForMultipleOf3 and replacementForMultipleOf5 cannot be null.");
+        if (replacementForMultipleOfNum1 == null || replacementForMultipleOfNum2 == null) {
+            throw new IllegalArgumentException("replacementForMultipleOfNum1 and replacementForMultipleOfNum2 cannot be null.");
         }
     }
 }
